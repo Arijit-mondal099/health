@@ -1,6 +1,6 @@
 import { ToastContainer } from "react-toastify";
 import {useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
@@ -24,8 +24,15 @@ const App = () => {
       <div className="flex items-start">
         <Sidebar />
         <Routes>
+          <Route path="/" element={
+            adminToken ? (
+                <Navigate to="/admin-dashboard" />
+              ) : (
+                doctorToken ? <Navigate to="/doctor-dashboard" /> : <Navigate to="/" />
+            )}
+          />
+
           {/* Admin routes */}
-          <Route path="/" element={<></>} />
           <Route path="/admin-dashboard" element={<Dashboard />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/add-doctor" element={<AddDoctor />} />
