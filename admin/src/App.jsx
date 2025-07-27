@@ -24,13 +24,7 @@ const App = () => {
       <div className="flex items-start">
         <Sidebar />
         <Routes>
-          <Route path="/" element={
-            adminToken ? (
-                <Navigate to="/admin-dashboard" replace />
-              ) : (
-                doctorToken ? <Navigate to="/doctor-dashboard" replace /> : <Navigate to="/" replace />
-            )}
-          />
+          <Route path="/" element={<></>}/>
 
           {/* Admin routes */}
           <Route path="/admin-dashboard" element={<Dashboard />} />
