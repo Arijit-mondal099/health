@@ -12,7 +12,9 @@ app.use(
   cors({
     origin: [
       "https://health-frontend-c4x4.onrender.com",
-      "https://health-admin-o5vg.onrender.com"
+      "https://health-admin-o5vg.onrender.com",
+      "http://localhost:5173",
+      "http://localhost:5174",
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
