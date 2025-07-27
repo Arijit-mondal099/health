@@ -13,6 +13,10 @@ import DoctorDashboard from "./pages/doctor/DoctorDashboard.jsx";
 import DoctorAppointments from "./pages/doctor/DoctorAppointments.jsx";
 import DoctorProfile from "./pages/doctor/DoctorProfile.jsx";
 
+const ProtectedRoute = ({ element, token }) => {
+  return token ? element : <Navigate to="/" replace />;
+};
+
 const App = () => {
   const { adminToken } = useSelector((store) => store.admin);
   const { doctorToken } = useSelector((store) => store.doctor);
@@ -30,15 +34,15 @@ const App = () => {
           }/>
 
           {/* Admin routes */}
-          <Route path="/admin-dashboard" element={<Dashboard />} />
-          <Route path="/appointments" element={<Appointments />} />
-          <Route path="/add-doctor" element={<AddDoctor />} />
-          <Route path="/doctors-list" element={<DoctorsList />} />
+          <Route path="/admin-dashboard" element={<ProtectedRoute token={adminToken} element={<Dashboard />} />} />
+          <Route path="/appointments" element={<ProtectedRoute token={adminToken} element={<Appointments />} />} />
+          <Route path="/add-doctor" element={<ProtectedRoute token={adminToken} element={<AddDoctor />} />} />
+          <Route path="/doctors-list" element={<ProtectedRoute token={adminToken} element={<DoctorsList />} />} />
 
           {/* Doctor routes */}
-          <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
-          <Route path="/doctor-appointments" element={<DoctorAppointments />} />
-          <Route path="/doctor-profile" element={<DoctorProfile />} />
+          <Route path="/doctor-dashboard" element={<ProtectedRoute token={doctorToken} element={<DoctorDashboard />} />} />
+          <Route path="/doctor-appointments" element={<ProtectedRoute token={doctorToken} element={<DoctorAppointments />} />} />
+          <Route path="/doctor-profile" element={<ProtectedRoute token={doctorToken} element={<DoctorProfile />} />} />
         </Routes>
       </div>
 
