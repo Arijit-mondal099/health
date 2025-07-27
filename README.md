@@ -6,8 +6,8 @@
 
 ## 🌐 Live Demo
 
-- 👉 [View Live Frontend](https://your-live-frontend-link.com)
-- 👉 [View Live Admin/Doctor Dashboard](https://your-live-admin-link.com)
+- 👉 [View Live Frontend](https://health-frontend-c4x4.onrender.com)
+- 👉 [View Live Admin/Doctor Dashboard](https://health-admin-o5vg.onrender.com)
 
 ---
 
@@ -72,8 +72,8 @@
 
 1️⃣ **Clone the repository**
 ```bash
-git clone https://github.com/your-username/health-appointment-app.git
-cd health-appointment-app
+git clone https://github.com/Arijit-mondal099/health.git
+cd health
 ```
 
 2️⃣ **Install dependencies**
@@ -94,7 +94,6 @@ npm install
 ```bash
 # Create a .env file in the backend directory and add them:
 PORT = "4000"
-CORS_ORIGIN = "*"
 MONGODB_URI = "*******************"
 JWT_SECRET = "*******************"
 JWT_EXPIRY = "**"
@@ -137,4 +136,4 @@ npm run dev
 
 📬 **Contact**
 
-Created by [Arijit Mondal](https://github.com/your-username) — feel free to reach out!
+Created by [Arijit Mondal](https://github.com/Arijit-mondal099) — feel free to reach out!
