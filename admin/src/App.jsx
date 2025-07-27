@@ -1,5 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
@@ -26,9 +26,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={
             adminToken ? (
-                <Navigate to="/admin-dashboard" />
+                <Navigate to="/admin-dashboard" replace />
               ) : (
-                doctorToken ? <Navigate to="/doctor-dashboard" /> : <Navigate to="/" />
+                doctorToken ? <Navigate to="/doctor-dashboard" replace /> : <Navigate to="/" replace />
             )}
           />
 
