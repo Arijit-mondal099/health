@@ -19,8 +19,10 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
+    if ( token ) {
+      dispatch(getUser());
+    }
+  }, [token, dispatch]);
 
   return (
     <div className="fixed top-0 right-0 left-0 backdrop-blur-md flex items-center justify-between py-4 mx-4 sm:mx-[10%] z-50">
@@ -71,7 +73,11 @@ const Navbar = () => {
                 className="w-8 h-8 rounded-full object-cover object-top"
               />
             )}
-            <img src={dropdown_icon} alt="dropdown_icon" className="w-2.5" />
+            <img src={dropdown_icon} alt="dropdown_icon" 
+              className={`w-2.5 transform transition-transform duration-300 ease-in-out ${
+                userMenu ? "rotate-180" : "rotate-0"
+              }`}
+            />
 
             {/* -------------- Drop down ---------------- */}
             <div

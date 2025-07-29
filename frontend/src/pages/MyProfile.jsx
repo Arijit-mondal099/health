@@ -33,7 +33,7 @@ const MyProfile = () => {
 
   useEffect(() => {
     dispatch(getUser());
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return (

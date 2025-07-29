@@ -4,7 +4,7 @@ import axios from "axios";
 // *** initial state of the user slice *** //
 const initialState = {
   userData: null,
-  token: localStorage.getItem("userToken"),
+  token: localStorage.getItem("userToken") || null,
   loading: false,
   error: null,
   appointments: [],
@@ -57,6 +57,7 @@ export const userLogin = createAsyncThunk(
 export const getUser = createAsyncThunk("user/getUser", async (_, thunkAPI) => {
   try {
     const token = localStorage.getItem("userToken");
+    console.log(token)
 
     const { data } = await axios.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/v1/users`,
