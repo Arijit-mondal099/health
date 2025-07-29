@@ -73,7 +73,7 @@ const Footer = () => {
           <h2 className="text-lg font-medium text-gray-800">GET IN TOUCH</h2>
 
           <div className="mt-4 text-gray-600 text-sm font-[500] flex flex-col gap-2">
-            <p>+1-212-456-7890</p>
+            <p>+91 8016075232</p>
             <p>arijitm717@gmail.com</p>
           </div>
         </div>
