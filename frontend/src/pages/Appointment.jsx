@@ -121,8 +121,6 @@ const Appointment = () => {
     }
   };
 
-  if (error) toast.error(error);
-
   useEffect(() => {
     getDoctor();
   }, [doctorId, doctors]);
