@@ -22,8 +22,8 @@ const Contact = () => {
           </p>
 
           <div>
-            <p>Tel: (415) 555-0132</p>
-            <p>Email: greatstackdev@gmail.com</p>
+            <p>Tel: +91 8016075232</p>
+            <p>Email: arijitm717@gmail.com</p>
           </div>
 
           <p className="uppercase text-lg font-medium">Careers at PRESCRIPTO</p>
@@ -39,3 +39,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
