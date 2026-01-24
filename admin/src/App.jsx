@@ -43,6 +43,12 @@ const App = () => {
           <Route path="/doctor-dashboard" element={<ProtectedRoute token={doctorToken} element={<DoctorDashboard />} />} />
           <Route path="/doctor-appointments" element={<ProtectedRoute token={doctorToken} element={<DoctorAppointments />} />} />
           <Route path="/doctor-profile" element={<ProtectedRoute token={doctorToken} element={<DoctorProfile />} />} />
+
+          {/* handle undefined routes */}
+          <Route path="*" element={
+            adminToken && <Navigate to={"/admin-dashboard"} replace /> || 
+            doctorToken && <Navigate to={"/doctor-dashboard"} replace />} 
+          />
         </Routes>
       </div>
 
