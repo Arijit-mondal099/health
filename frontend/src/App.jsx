@@ -1,7 +1,7 @@
 /**
  * Node modules
  */
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 /**
@@ -17,8 +17,6 @@ import MyAppointment from "./pages/MyAppointment";
 import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-
 
 const App = () => {
   return (
@@ -36,6 +34,7 @@ const App = () => {
         <Route path={"/my-profile"} element={<MyProfile />} />
         <Route path={"/my-appointments"} element={<MyAppointment />} />
         <Route path={"/appointment/:doctorId"} element={<Appointment />} />
+        <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
 
       <ToastContainer />
