@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+@import "@health/ui/globals.css";
+@source "../../../packages/ui/src/**/*.{js,jsx}";
+
+* {
+    font-family: "Inter", ui-sans-serif, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Figtree", ui-sans-serif, sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
