@@ -1,0 +1,25 @@
+{
+    "name": "@health/core",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "sideEffects": false,
+    "exports": {
+        ".": "./src/index.js",
+        "./constants": "./src/constants/index.js",
+        "./errors": "./src/errors/index.js",
+        "./response": "./src/response.js",
+        "./utils": "./src/utils/index.js",
+        "./schemas": "./src/schemas/index.js",
+        "./schemas/validate": "./src/schemas/validate.js",
+        "./schemas/common": "./src/schemas/common.js",
+        "./schemas/auth": "./src/schemas/auth.js",
+        "./schemas/user": "./src/schemas/user.js",
+        "./schemas/doctor": "./src/schemas/doctor.js",
+        "./schemas/appointment": "./src/schemas/appointment.js",
+        "./types": "./src/types/index.js"
+    },
+    "dependencies": {
+        "zod": "^3.25.0"
+    }
+}
