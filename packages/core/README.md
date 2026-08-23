@@ -40,17 +40,17 @@ import { registerSchema } from "@health/core/schemas/auth";
 import { toSorted } from "@health/core/utils";
 ```
 
-| Subpath | Contents |
-| :--- | :--- |
-| `@health/core` | `ApiResponse` + root barrel |
-| `@health/core/constants` | Enums & constants |
-| `@health/core/errors` | Error classes |
-| `@health/core/response` | `ApiResponse` |
-| `@health/core/utils` | Utility helpers |
-| `@health/core/schemas` | Zod schema barrel |
-| `@health/core/schemas/validate` | `parseWith` / `validateBody` helper |
-| `@health/core/schemas/<feature>` | Per-feature Zod schemas |
-| `@health/core/types` | Shared types |
+| Subpath                          | Contents                            |
+| :------------------------------- | :---------------------------------- |
+| `@health/core`                   | `ApiResponse` + root barrel         |
+| `@health/core/constants`         | Enums & constants                   |
+| `@health/core/errors`            | Error classes                       |
+| `@health/core/response`          | `ApiResponse`                       |
+| `@health/core/utils`             | Utility helpers                     |
+| `@health/core/schemas`           | Zod schema barrel                   |
+| `@health/core/schemas/validate`  | `parseWith` / `validateBody` helper |
+| `@health/core/schemas/<feature>` | Per-feature Zod schemas             |
+| `@health/core/types`             | Shared types                        |
 
 ## 🧪 Usage
 
