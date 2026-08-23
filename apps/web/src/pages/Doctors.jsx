@@ -112,9 +112,7 @@ const Doctors = () => {
             ) : (
                 <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-border py-20 text-center">
                     <SearchX className="size-10 text-muted-foreground" />
-                    <p className="text-lg font-medium text-muted-foreground">
-                        Doctors are not available
-                    </p>
+                    <p className="file-label text-muted-foreground">Doctors are not available</p>
                     <Button variant="outline" onClick={() => navigate("/doctors")}>
                         Clear filter
                     </Button>

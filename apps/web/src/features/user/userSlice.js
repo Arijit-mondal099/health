@@ -8,7 +8,6 @@ const initialState = {
     loading: false,
     error: null,
     appointments: [],
-    order: null,
 };
 
 // action -> user/userSignup

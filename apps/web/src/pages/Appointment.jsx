@@ -133,7 +133,7 @@ const Appointment = () => {
 
                     <div className="flex flex-col gap-4 p-6 md:p-8">
                         <div className="flex items-center gap-2">
-                            <h1 className="text-xl font-semibold capitalize tracking-tight text-foreground sm:text-2xl">
+                            <h1 className="font-display text-2xl font-medium capitalize tracking-tight text-foreground sm:text-3xl">
                                 {doctor.name}
                             </h1>
                             <BadgeCheck className="size-5 text-primary" />
@@ -143,33 +143,42 @@ const Appointment = () => {
                             <span className="uppercase">{doctor.degree}</span>
                             <span className="text-border">-</span>
                             <span className="capitalize">{doctor.speciality}</span>
-                            <Badge variant="outline" className="ml-1">
+                            <Badge
+                                variant="outline"
+                                className="ml-1 font-mono text-[11px] uppercase tracking-wider"
+                            >
                                 {doctor.experience}
                             </Badge>
                         </div>
 
                         <div>
-                            <p className="mb-1 flex items-center gap-1 text-sm font-medium text-foreground">
+                            <p className="file-label mb-2 flex items-center gap-1.5 text-foreground">
                                 About
-                                <Info className="size-4 text-muted-foreground" />
+                                <Info className="size-3.5 text-muted-foreground" />
                             </p>
                             <p className="max-w-2xl text-sm text-muted-foreground">
                                 {doctor.about}
                             </p>
                         </div>
 
-                        <p className="text-lg text-muted-foreground">
-                            Appointment fee:{" "}
-                            <span className="font-semibold text-foreground">₹{doctor.fees}</span>
-                        </p>
+                        <div className="flex max-w-xs items-baseline gap-2 text-sm">
+                            <span className="text-muted-foreground">Consultation fee</span>
+                            <span className="dot-leader" />
+                            <span className="font-mono text-base font-semibold text-foreground">
+                                ₹{doctor.fees}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </Card>
 
             <div className="mt-8">
-                <h2 className="mb-4 text-base font-medium text-foreground">Booking slots</h2>
+                <div className="mb-4 flex items-center gap-3">
+                    <h2 className="file-label text-muted-foreground">Booking slots</h2>
+                    <span className="h-px flex-1 bg-border" />
+                </div>
 
-                <div className="flex gap-3 overflow-x-auto pb-2">
+                <div className="scrollbar-x flex gap-3 overflow-x-auto pb-2">
                     {doctorSlots.map(
                         (slot, index) =>
                             slot[0] && (
@@ -178,29 +187,31 @@ const Appointment = () => {
                                     type="button"
                                     onClick={() => setSlotIndex(index)}
                                     className={cn(
-                                        "flex h-20 w-16 shrink-0 flex-col items-center justify-center rounded-xl border text-sm font-medium transition-colors",
+                                        "flex h-20 w-16 shrink-0 flex-col items-center justify-center rounded-md border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                                         slotIndex === index
                                             ? "border-primary bg-primary text-primary-foreground"
                                             : "border-border bg-background text-foreground hover:border-primary/40",
                                     )}
                                 >
-                                    <span className="uppercase">
+                                    <span className="font-mono text-[10px] uppercase tracking-widest opacity-80">
                                         {days[slot[0].dateTime.getDay()]}
                                     </span>
-                                    <span>{slot[0].dateTime.getDate()}</span>
+                                    <span className="text-lg font-semibold">
+                                        {slot[0].dateTime.getDate()}
+                                    </span>
                                 </button>
                             ),
                     )}
                 </div>
 
-                <div className="mt-4 flex gap-3 overflow-x-auto pb-2">
+                <div className="scrollbar-x mt-4 flex gap-3 overflow-x-auto pb-2">
                     {doctorSlots[slotIndex]?.map((item, index) => (
                         <button
                             key={index}
                             type="button"
                             onClick={() => setSlotTime(item.time)}
                             className={cn(
-                                "min-w-24 shrink-0 rounded-full border px-4 py-2 text-sm capitalize transition-colors",
+                                "min-w-24 shrink-0 rounded-sm border px-3 py-1.5 font-mono text-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                                 slotTime === item.time
                                     ? "border-primary bg-primary text-primary-foreground"
                                     : "border-border bg-background text-muted-foreground hover:border-primary/40",

@@ -135,7 +135,7 @@ const MyProfile = () => {
                             )}
                         </div>
                         <div className="min-w-0">
-                            <h1 className="truncate text-2xl font-semibold tracking-tight text-foreground">
+                            <h1 className="truncate font-display text-2xl font-medium tracking-tight text-foreground">
                                 {user.name}
                             </h1>
                             <p className="truncate text-sm text-muted-foreground">{user.email}</p>
@@ -183,7 +183,7 @@ const MyProfile = () => {
 
                 <div className="border-t border-border">
                     <Tabs defaultValue="contact" className="p-6 sm:p-8">
-                        <TabsList className="mb-6">
+                        <TabsList variant="line" className="mb-6">
                             <TabsTrigger value="contact">Contact information</TabsTrigger>
                             <TabsTrigger value="basic">Basic information</TabsTrigger>
                         </TabsList>

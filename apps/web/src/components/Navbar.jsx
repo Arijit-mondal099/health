@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { logo } from "../assets";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +25,8 @@ import {
     DrawerDescription,
 } from "@health/ui";
 import { useTheme } from "../theme/ThemeProvider.jsx";
+import Container from "./Container.jsx";
+import Wordmark from "./Wordmark.jsx";
 
 const NAV_LINKS = [
     { to: "/", label: "Home" },
@@ -60,18 +61,15 @@ const Navbar = () => {
         .toUpperCase();
 
     return (
-        <header className="fixed inset-x-0 top-4 z-50">
-            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-                <nav className="flex h-14 items-center justify-between rounded-2xl border border-border bg-background/80 px-4 shadow-sm backdrop-blur-xl">
+        <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
+            <Container>
+                <nav className="flex h-16 items-center justify-between">
                     <NavLink
                         to={"/"}
                         onClick={() => scrollTo(0, 0)}
-                        className="flex items-center gap-2"
+                        className="rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
-                        <img src={logo} alt="Health logo" className="size-8 sm:size-9" />
-                        <span className="text-lg font-semibold tracking-tight text-foreground">
-                            Health
-                        </span>
+                        <Wordmark />
                     </NavLink>
 
                     <div className="hidden items-center gap-1 md:flex">
@@ -82,10 +80,10 @@ const Navbar = () => {
                                 onClick={() => scrollTo(0, 0)}
                                 className={({ isActive }) =>
                                     cn(
-                                        "rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                                        "border-b-2 px-3.5 py-2 text-sm font-medium transition-colors",
                                         isActive
-                                            ? "bg-primary/10 text-primary"
-                                            : "text-muted-foreground hover:text-foreground",
+                                            ? "border-primary text-primary"
+                                            : "border-transparent text-muted-foreground hover:text-foreground",
                                     )
                                 }
                             >
@@ -100,7 +98,7 @@ const Navbar = () => {
                             size="icon"
                             onClick={toggleTheme}
                             aria-label="Toggle theme"
-                            className="size-9 rounded-full"
+                            className="size-9"
                         >
                             {theme === "dark" ? (
                                 <Sun className="size-[18px]" />
@@ -152,7 +150,7 @@ const Navbar = () => {
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="size-9 rounded-full md:hidden"
+                                    className="size-9 md:hidden"
                                     aria-label="Open menu"
                                 >
                                     <Menu className="size-5" />
@@ -163,14 +161,16 @@ const Navbar = () => {
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="absolute right-4 top-4 size-8 rounded-full"
+                                        className="absolute right-4 top-4 size-8"
                                         aria-label="Close menu"
                                     >
                                         <X className="size-5" />
                                     </Button>
                                 </DrawerClose>
                                 <DrawerHeader>
-                                    <DrawerTitle>Menu</DrawerTitle>
+                                    <DrawerTitle className="file-label text-muted-foreground">
+                                        Menu
+                                    </DrawerTitle>
                                     <DrawerDescription>Navigate the app</DrawerDescription>
                                 </DrawerHeader>
                                 <div className="flex flex-col gap-1 px-4 pb-8">
@@ -203,7 +203,7 @@ const Navbar = () => {
                         </Drawer>
                     </div>
                 </nav>
-            </div>
+            </Container>
         </header>
     );
 };

@@ -14,7 +14,7 @@ const Contact = () => {
 
     return (
         <div className="flex flex-col gap-12 py-10">
-            <h1 className="text-center text-3xl font-semibold tracking-tight text-foreground">
+            <h1 className="text-center font-display text-4xl font-medium tracking-tight text-foreground">
                 Contact <span className="text-primary">Us</span>
             </h1>
 
@@ -27,23 +27,27 @@ const Contact = () => {
 
                 <div className="flex w-full max-w-md flex-col gap-6">
                     <div className="flex flex-col gap-4">
-                        <p className="text-lg font-medium uppercase tracking-wide text-foreground">
-                            Our Office
-                        </p>
+                        <p className="file-label text-foreground">Our office</p>
                         <p className="text-sm text-muted-foreground">
                             54709 Willms Station
                             <br />
                             Suite 350, Washington, USA
                         </p>
                         <Separator />
-                        <div className="text-sm text-muted-foreground">
-                            <p>Tel: +91 8016075232</p>
-                            <p>Email: arijitm717@gmail.com</p>
+                        <div className="flex flex-col gap-2 text-sm">
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-muted-foreground">Tel</span>
+                                <span className="dot-leader" />
+                                <span className="font-mono">+91 8016075232</span>
+                            </div>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-muted-foreground">Email</span>
+                                <span className="dot-leader" />
+                                <span className="font-mono">arijitm717@gmail.com</span>
+                            </div>
                         </div>
                         <Separator />
-                        <p className="text-lg font-medium uppercase tracking-wide text-foreground">
-                            Careers at Health
-                        </p>
+                        <p className="file-label text-foreground">Careers at Health</p>
                         <p className="text-sm text-muted-foreground">
                             Learn more about our teams and job openings.
                         </p>
@@ -54,9 +58,9 @@ const Contact = () => {
 
                     <form
                         onSubmit={onSubmit}
-                        className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6"
+                        className="flex flex-col gap-4 rounded-lg border border-border bg-popover p-6"
                     >
-                        <p className="text-base font-medium text-foreground">Send us a message</p>
+                        <p className="file-label text-foreground">Send us a message</p>
                         <div className="flex flex-col gap-1.5">
                             <Label htmlFor="c-name">Name</Label>
                             <Input
