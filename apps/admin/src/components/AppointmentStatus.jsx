@@ -11,7 +11,10 @@ export function getAppointmentStatus(appointment) {
 export function StatusBadge({ state }) {
     if (state === "canceled") {
         return (
-            <Badge variant="destructive" className="gap-1">
+            <Badge
+                variant="destructive"
+                className="gap-1 font-mono text-[11px] uppercase tracking-wider"
+            >
                 <XCircle className="size-3" />
                 Canceled
             </Badge>
@@ -19,7 +22,7 @@ export function StatusBadge({ state }) {
     }
     if (state === "completed") {
         return (
-            <Badge className="gap-1">
+            <Badge className="gap-1 font-mono text-[11px] uppercase tracking-wider">
                 <CheckCircle2 className="size-3" />
                 Completed
             </Badge>
@@ -27,14 +30,20 @@ export function StatusBadge({ state }) {
     }
     if (state === "paid") {
         return (
-            <Badge variant="secondary" className="gap-1">
+            <Badge
+                variant="secondary"
+                className="gap-1 font-mono text-[11px] uppercase tracking-wider"
+            >
                 <CreditCard className="size-3" />
                 Paid
             </Badge>
         );
     }
     return (
-        <Badge variant="outline" className="gap-1 text-muted-foreground">
+        <Badge
+            variant="outline"
+            className="gap-1 font-mono text-[11px] uppercase tracking-wider text-muted-foreground"
+        >
             Pending
         </Badge>
     );

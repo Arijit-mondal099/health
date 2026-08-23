@@ -48,24 +48,26 @@ const Login = () => {
 
             setEmail("");
             setPassword("");
-        } catch (error) {
+        } catch {
             toast.error("Invalid credentials");
-            console.log(error?.message);
         }
     };
 
     return (
         <div className="flex min-h-screen items-center justify-center p-4">
-            <Card className="w-full max-w-sm">
+            <Card className="w-full max-w-sm rounded-lg border-border bg-popover">
                 <CardHeader>
-                    <CardTitle className="text-2xl tracking-tight">Sign in</CardTitle>
+                    <p className="file-label text-muted-foreground">Clinic console</p>
+                    <CardTitle className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
+                        Sign in
+                    </CardTitle>
                     <CardDescription>
                         Access the clinic console as an admin or doctor.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Tabs value={state} onValueChange={setState}>
-                        <TabsList className="grid w-full grid-cols-2">
+                        <TabsList variant="line" className="grid w-full grid-cols-2">
                             <TabsTrigger value="admin">Admin</TabsTrigger>
                             <TabsTrigger value="doctor">Doctor</TabsTrigger>
                         </TabsList>

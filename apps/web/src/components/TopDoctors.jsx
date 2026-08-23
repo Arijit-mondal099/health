@@ -36,9 +36,9 @@ const TopDoctors = () => {
                         <Card key={i} className="overflow-hidden border-border p-0">
                             <Skeleton className="aspect-square w-full rounded-none" />
                             <div className="space-y-2 p-4">
-                                <Skeleton className="h-3 w-20" />
                                 <Skeleton className="h-4 w-3/4" />
                                 <Skeleton className="h-3 w-1/2" />
+                                <Skeleton className="h-3 w-12" />
                             </div>
                         </Card>
                     ))}

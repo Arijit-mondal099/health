@@ -34,7 +34,9 @@ const SPECIALITIES = [
 
 const Field = ({ label, htmlFor, children }) => (
     <div className="flex flex-col gap-1.5">
-        <Label htmlFor={htmlFor}>{label}</Label>
+        <Label htmlFor={htmlFor} className="file-label text-muted-foreground">
+            {label}
+        </Label>
         {children}
     </div>
 );
@@ -94,9 +96,12 @@ const AddDoctor = () => {
 
     return (
         <div className="py-6 md:py-8">
-            <Card className="mx-auto w-full max-w-3xl">
+            <Card className="mx-auto w-full max-w-3xl rounded-lg border-border bg-popover">
                 <CardHeader>
-                    <CardTitle className="text-2xl tracking-tight">Add Doctor</CardTitle>
+                    <p className="file-label text-muted-foreground">Clinic console</p>
+                    <CardTitle className="font-display text-2xl font-medium tracking-tight sm:text-3xl">
+                        Add Doctor
+                    </CardTitle>
                     <CardDescription>Register a new doctor to the clinic.</CardDescription>
                 </CardHeader>
                 <CardContent>

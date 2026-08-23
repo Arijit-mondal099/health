@@ -1,18 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 @import "@health/ui/globals.css";
 @source "../../../packages/ui/src/**/*.{js,jsx}";
 
-* {
-    font-family: "Inter", ui-sans-serif, sans-serif;
+@theme {
+    --font-display: "Fraunces", ui-serif, Georgia, serif;
 }
 
-h1,
-h2,
-h3,
-h4 {
-    font-family: "Figtree", ui-sans-serif, sans-serif;
+/* globals.css re-declares these inside .dark, so override both or dark mode
+   silently falls back to system fonts */
+:root,
+.dark {
+    --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+body {
+    font-family: var(--font-sans);
 }
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+/* file-tab label: mono, uppercase, letterspaced */
+@utility file-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
 }

@@ -22,10 +22,10 @@ const SidebarLink = ({ to, label, icon: Icon, isActive }) => (
     <NavLink
         to={to}
         className={cn(
-            "flex items-center justify-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors md:justify-start",
+            "flex items-center justify-center gap-3 border-l-2 px-3 py-2 text-sm font-medium transition-colors md:justify-start",
             isActive
-                ? "bg-primary/10 text-primary"
-                : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                ? "border-l-primary bg-primary/5 text-primary"
+                : "border-l-transparent text-muted-foreground hover:bg-accent hover:text-foreground",
         )}
     >
         <Icon className="size-5 shrink-0" />
@@ -40,6 +40,9 @@ const Sidebar = () => {
 
     return (
         <aside className="sticky top-14 flex h-[calc(100vh-3.5rem)] w-16 shrink-0 flex-col border-r border-sidebar-border bg-sidebar p-2 md:w-60">
+            <p className="file-label hidden px-3 pb-2 pt-1 text-muted-foreground md:block">
+                Console
+            </p>
             <nav className="flex flex-col gap-1">
                 {links.map((link) => (
                     <SidebarLink key={link.to} {...link} />

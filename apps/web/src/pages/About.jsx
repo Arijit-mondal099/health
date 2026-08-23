@@ -42,10 +42,11 @@ const About = () => {
                     className="w-full max-w-[360px] rounded-2xl object-cover"
                 />
                 <div className="flex flex-col gap-4 text-sm text-muted-foreground lg:text-base">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                        About Health
+                    <span className="flex items-center gap-3">
+                        <span className="h-px w-10 bg-primary/40" />
+                        <span className="file-label text-primary">About Health</span>
                     </span>
-                    <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+                    <h1 className="font-display text-4xl font-medium tracking-tight text-foreground">
                         About <span className="text-primary">Us</span>
                     </h1>
                     <p>
@@ -80,9 +81,10 @@ const About = () => {
                             key={f.title}
                             className="border-border p-6 transition-colors hover:border-primary/40 hover:bg-primary/5"
                         >
-                            <p className="text-lg font-semibold uppercase tracking-tight text-foreground">
-                                {f.title}
-                            </p>
+                            <div>
+                                <p className="file-label text-foreground">{f.title}</p>
+                                <span className="mt-2 block h-px w-8 bg-primary/40" />
+                            </div>
                             <p className="mt-3 text-sm text-muted-foreground">{f.text}</p>
                         </Card>
                     ))}

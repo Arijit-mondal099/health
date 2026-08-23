@@ -259,5 +259,5 @@ const adminSlice = createSlice({
     },
 });
 
-export const { getAdminTokenFromLS, logout } = adminSlice.actions;
+export const { logout } = adminSlice.actions;
 export default adminSlice.reducer;

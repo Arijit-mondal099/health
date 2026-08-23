@@ -8,7 +8,6 @@ import {
     Avatar,
     AvatarFallback,
     AvatarImage,
-    Badge,
     Button,
     Card,
     Dialog,
@@ -88,13 +87,16 @@ const MyAppointment = () => {
         return (
             <div className="flex flex-col gap-4 py-10">
                 {Array.from({ length: 3 }).map((_, i) => (
-                    <Card key={i} className="flex gap-4 p-4">
-                        <Skeleton className="size-28 rounded-md sm:size-32" />
-                        <div className="flex flex-1 flex-col gap-2">
-                            <Skeleton className="h-5 w-40" />
-                            <Skeleton className="h-4 w-32" />
-                            <Skeleton className="h-4 w-48" />
+                    <Card key={i} className="rounded-lg p-5">
+                        <div className="flex gap-4">
+                            <Skeleton className="size-24 rounded-xl sm:size-28" />
+                            <div className="flex flex-1 flex-col gap-2">
+                                <Skeleton className="h-5 w-40" />
+                                <Skeleton className="h-4 w-32" />
+                                <Skeleton className="h-4 w-48" />
+                            </div>
                         </div>
+                        <Skeleton className="mt-4 h-9 w-full rounded-md" />
                     </Card>
                 ))}
             </div>
@@ -103,8 +105,8 @@ const MyAppointment = () => {
 
     return (
         <div className="flex flex-col gap-6 py-10">
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-                My Appointment
+            <h1 className="font-display text-3xl font-medium tracking-tight text-foreground">
+                My appointments
             </h1>
 
             {appointments.length ? (
@@ -118,45 +120,50 @@ const MyAppointment = () => {
                             .toUpperCase();
 
                         return (
-                            <Card
-                                key={appointment._id}
-                                className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between"
-                            >
-                                <div className="flex gap-4">
-                                    <Avatar className="size-24 rounded-xl sm:size-28">
-                                        <AvatarImage
-                                            src={appointment.doctor.image}
-                                            alt={appointment.doctor.name}
-                                        />
-                                        <AvatarFallback>{initials}</AvatarFallback>
-                                    </Avatar>
-                                    <div className="flex flex-col justify-center gap-1 text-sm text-muted-foreground">
-                                        <p className="text-lg font-medium text-foreground">
-                                            {appointment.doctor.name}
-                                        </p>
-                                        <p className="capitalize">
-                                            {appointment.doctor.speciality}
-                                        </p>
-                                        <p className="mt-1 flex items-center gap-1.5">
-                                            <MapPin className="size-4" />
-                                            {appointment.doctor.address}
-                                        </p>
-                                        <p className="flex items-center gap-1.5">
-                                            <CalendarDays className="size-4" />
-                                            {formatSlotDate(appointment.slotDate)} -{" "}
-                                            {appointment.slotTime}
-                                        </p>
+                            <Card key={appointment._id} className="rounded-lg border-border p-0">
+                                <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
+                                    <div className="flex gap-4">
+                                        <Avatar className="size-20 rounded-md sm:size-24">
+                                            <AvatarImage
+                                                src={appointment.doctor.image}
+                                                alt={appointment.doctor.name}
+                                            />
+                                            <AvatarFallback>{initials}</AvatarFallback>
+                                        </Avatar>
+                                        <div className="flex flex-col justify-center gap-1 text-sm text-muted-foreground">
+                                            <p className="text-lg font-medium capitalize text-foreground">
+                                                {appointment.doctor.name}
+                                            </p>
+                                            <p className="capitalize">
+                                                {appointment.doctor.speciality}
+                                            </p>
+                                            <p className="mt-1 flex items-center gap-1.5">
+                                                <MapPin className="size-4" />
+                                                {appointment.doctor.address}
+                                            </p>
+                                            <p className="flex items-center gap-1.5 font-mono text-xs">
+                                                <CalendarDays className="size-4" />
+                                                {formatSlotDate(appointment.slotDate)} ·{" "}
+                                                {appointment.slotTime}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col gap-2 sm:items-end">
+                                {/* tear line */}
+                                <div className="relative border-t-2 border-dashed border-border">
+                                    <span className="absolute -left-2 -top-[5px] size-3 rounded-full bg-background" />
+                                    <span className="absolute -right-2 -top-[5px] size-3 rounded-full bg-background" />
+                                </div>
+
+                                <div className="flex flex-col gap-2 bg-muted/30 px-5 py-4 sm:flex-row sm:items-center sm:justify-end sm:gap-3">
                                     {!appointment.cancel && !appointment.isCompleted && (
                                         <>
                                             {appointment.payment ? (
-                                                <Badge className="border-primary/20 bg-primary/10 text-primary">
-                                                    <CheckCircle2 className="mr-1 size-3.5" />
+                                                <span className="stamp text-primary">
+                                                    <CheckCircle2 className="size-3" />
                                                     Paid
-                                                </Badge>
+                                                </span>
                                             ) : (
                                                 <Button
                                                     disabled={appointment.payment}
@@ -211,12 +218,12 @@ const MyAppointment = () => {
                                     )}
 
                                     {appointment.cancel && (
-                                        <Badge variant="destructive">Cancelled</Badge>
+                                        <span className="stamp [--stamp-rotate:5deg] text-destructive">
+                                            Cancelled
+                                        </span>
                                     )}
                                     {appointment.isCompleted && (
-                                        <Badge className="border-primary/20 bg-primary/10 text-primary">
-                                            Completed
-                                        </Badge>
+                                        <span className="stamp text-primary">Completed</span>
                                     )}
                                 </div>
                             </Card>
@@ -225,7 +232,7 @@ const MyAppointment = () => {
                 </div>
             ) : (
                 <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed border-border py-20 text-center">
-                    <p className="text-lg font-medium text-muted-foreground">
+                    <p className="file-label text-muted-foreground">
                         Appointments haven't created yet!
                     </p>
                     <Button variant="outline" onClick={() => (window.location.href = "/doctors")}>

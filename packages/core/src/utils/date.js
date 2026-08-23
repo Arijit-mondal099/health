@@ -58,7 +58,3 @@ export const toAge = (dob) => {
     if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age -= 1;
     return age;
 };
-
-/** Format a Date/ISO string for display using `Intl.DateTimeFormat`. */
-export const formatDate = (value, locale = "en-IN") =>
-    new Intl.DateTimeFormat(locale, { dateStyle: "medium" }).format(new Date(value));

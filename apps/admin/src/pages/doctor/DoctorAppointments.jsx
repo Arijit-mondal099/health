@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { CalendarX } from "lucide-react";
 import { Card, CardContent, CardHeader, Skeleton } from "@health/ui";
 import { AppointmentsTable } from "../../components/AppointmentsTable.jsx";
+import EmptyState from "../../components/EmptyState.jsx";
 
 const DoctorAppointments = () => {
     const { appointments } = useSelector((store) => store.doctor);
@@ -39,7 +40,7 @@ const DoctorAppointments = () => {
     if (!appointments) {
         return (
             <div className="flex flex-col gap-6 py-6 md:py-8">
-                <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+                <h1 className="font-display text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
                     Appointments
                 </h1>
                 <Card>
@@ -58,7 +59,9 @@ const DoctorAppointments = () => {
 
     return (
         <div className="flex flex-col gap-6 py-6 md:py-8">
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">Appointments</h1>
+            <h1 className="font-display text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
+                Appointments
+            </h1>
 
             {appointments.length ? (
                 <AppointmentsTable
@@ -69,10 +72,7 @@ const DoctorAppointments = () => {
                     onComplete={handleCompleteAppointment}
                 />
             ) : (
-                <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-border py-20 text-center">
-                    <CalendarX className="size-10 text-muted-foreground" />
-                    <p className="text-lg font-medium text-muted-foreground">No appointments yet</p>
-                </div>
+                <EmptyState icon={CalendarX} title="No appointments yet" />
             )}
         </div>
     );

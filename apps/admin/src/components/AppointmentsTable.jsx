@@ -31,15 +31,27 @@ export function AppointmentsTable({
             <Table>
                 <TableHeader>
                     <TableRow className="hover:bg-transparent">
-                        <TableHead className="w-10">#</TableHead>
-                        <TableHead>Patient</TableHead>
-                        <TableHead>Age</TableHead>
-                        <TableHead>Date &amp; Time</TableHead>
-                        {showDoctor && <TableHead>Doctor</TableHead>}
-                        <TableHead>Fees</TableHead>
-                        {showPayment && <TableHead>Payment</TableHead>}
-                        <TableHead>Status</TableHead>
-                        <TableHead className="text-right">Actions</TableHead>
+                        <TableHead className="file-label w-10 text-muted-foreground">#</TableHead>
+                        <TableHead className="file-label text-muted-foreground">Patient</TableHead>
+                        <TableHead className="file-label text-muted-foreground">Age</TableHead>
+                        <TableHead className="file-label text-muted-foreground">
+                            Date &amp; Time
+                        </TableHead>
+                        {showDoctor && (
+                            <TableHead className="file-label text-muted-foreground">
+                                Doctor
+                            </TableHead>
+                        )}
+                        <TableHead className="file-label text-muted-foreground">Fees</TableHead>
+                        {showPayment && (
+                            <TableHead className="file-label text-muted-foreground">
+                                Payment
+                            </TableHead>
+                        )}
+                        <TableHead className="file-label text-muted-foreground">Status</TableHead>
+                        <TableHead className="file-label text-right text-muted-foreground">
+                            Actions
+                        </TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -48,7 +60,9 @@ export function AppointmentsTable({
                         const actionable = !appointment.cancel && !appointment.isCompleted;
                         return (
                             <TableRow key={appointment._id}>
-                                <TableCell className="text-muted-foreground">{i + 1}</TableCell>
+                                <TableCell className="font-mono text-[13px] text-muted-foreground">
+                                    {String(i + 1).padStart(2, "0")}
+                                </TableCell>
                                 <TableCell>
                                     <div className="flex items-center gap-2">
                                         <Avatar className="size-8 border border-border">
@@ -60,15 +74,15 @@ export function AppointmentsTable({
                                                 {appointment.user.name?.[0]}
                                             </AvatarFallback>
                                         </Avatar>
-                                        <span className="font-medium text-foreground">
+                                        <span className="font-medium capitalize text-foreground">
                                             {appointment.user.name}
                                         </span>
                                     </div>
                                 </TableCell>
-                                <TableCell className="text-muted-foreground">
+                                <TableCell className="font-mono text-[13px] text-muted-foreground">
                                     {ageConverter(appointment.user.dob)}
                                 </TableCell>
-                                <TableCell className="text-muted-foreground">
+                                <TableCell className="font-mono text-[13px] text-muted-foreground">
                                     {`${dateConverter(appointment.slotDate)} ${appointment.slotTime}`}
                                 </TableCell>
                                 {showDoctor && (
@@ -83,21 +97,31 @@ export function AppointmentsTable({
                                                     {appointment.doctor.name?.[0]}
                                                 </AvatarFallback>
                                             </Avatar>
-                                            <span className="font-medium text-foreground">
+                                            <span className="font-medium capitalize text-foreground">
                                                 {appointment.doctor.name}
                                             </span>
                                         </div>
                                     </TableCell>
                                 )}
-                                <TableCell className="font-medium">
+                                <TableCell className="font-mono text-[13px] font-medium">
                                     ₹{appointment.doctor.fees}
                                 </TableCell>
                                 {showPayment && (
                                     <TableCell>
                                         {appointment.payment ? (
-                                            <Badge variant="secondary">Online</Badge>
+                                            <Badge
+                                                variant="secondary"
+                                                className="font-mono text-[11px] uppercase tracking-wider"
+                                            >
+                                                Online
+                                            </Badge>
                                         ) : (
-                                            <Badge variant="outline">Cash</Badge>
+                                            <Badge
+                                                variant="outline"
+                                                className="font-mono text-[11px] uppercase tracking-wider"
+                                            >
+                                                Cash
+                                            </Badge>
                                         )}
                                     </TableCell>
                                 )}

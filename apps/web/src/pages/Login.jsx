@@ -36,9 +36,10 @@ const Login = () => {
 
     return (
         <div className="flex min-h-[70vh] items-center justify-center py-10">
-            <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-8 shadow-sm">
+            <div className="w-full max-w-sm rounded-lg border border-border bg-popover p-8 shadow-sm">
+                <p className="file-label mb-4 text-center text-muted-foreground">Patient access</p>
                 <Tabs defaultValue="login" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2">
+                    <TabsList variant="line" className="grid w-full grid-cols-2">
                         <TabsTrigger value="login">Login</TabsTrigger>
                         <TabsTrigger value="signup">Create Account</TabsTrigger>
                     </TabsList>
