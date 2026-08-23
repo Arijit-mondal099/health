@@ -23,6 +23,7 @@ import {
 import { Area, AreaChart, CartesianGrid, Cell, Pie, PieChart, XAxis, YAxis } from "recharts";
 import { CalendarDays, CalendarX, CheckCircle2, IndianRupee, Users, XCircle } from "lucide-react";
 import { AppointmentsTable } from "../../components/AppointmentsTable.jsx";
+import EmptyState from "../../components/EmptyState.jsx";
 import { getMonthlyTrend, getStatusBreakdown } from "../../utils/appointmentCharts.js";
 
 const STATS = [
@@ -78,7 +79,7 @@ const DoctorDashboard = () => {
     if (!dashboard) {
         return (
             <div className="flex flex-col gap-6 py-6 md:py-8">
-                <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+                <h1 className="font-display text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
                     Doctor Dashboard
                 </h1>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -113,7 +114,7 @@ const DoctorDashboard = () => {
 
     return (
         <div className="flex flex-col gap-6 py-6 md:py-8">
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+            <h1 className="font-display text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
                 Doctor Dashboard
             </h1>
 
@@ -125,10 +126,10 @@ const DoctorDashboard = () => {
                                 <Icon className="size-6" />
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-2xl font-bold tracking-tight text-foreground">
+                                <span className="font-display text-3xl font-medium tracking-tight text-foreground">
                                     {format(dashboard[key])}
                                 </span>
-                                <span className="text-sm font-medium text-muted-foreground">
+                                <span className="file-label mt-1 text-muted-foreground">
                                     {label}
                                 </span>
                             </div>
@@ -140,7 +141,9 @@ const DoctorDashboard = () => {
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-lg">Appointments trend</CardTitle>
+                        <CardTitle className="font-display text-base font-medium">
+                            Appointments trend
+                        </CardTitle>
                         <CardDescription>Monthly appointment volume</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -173,23 +176,27 @@ const DoctorDashboard = () => {
                                 </AreaChart>
                             </ChartContainer>
                         ) : (
-                            <div className="flex h-[240px] items-center justify-center text-sm text-muted-foreground">
-                                No appointments yet
-                            </div>
+                            <EmptyState
+                                icon={CalendarX}
+                                title="No appointments yet"
+                                className="h-[240px] rounded-lg border-0 py-0"
+                            />
                         )}
                     </CardContent>
                 </Card>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-lg">Appointment status</CardTitle>
+                        <CardTitle className="font-display text-base font-medium">
+                            Appointment status
+                        </CardTitle>
                         <CardDescription>Completed, canceled and pending</CardDescription>
                     </CardHeader>
                     <CardContent>
                         {appointments?.length ? (
                             <ChartContainer
                                 config={statusConfig}
-                                className="mx-auto aspect-square h-[240px]"
+                                className="mx-auto aspect-square h-[240px] w-full"
                             >
                                 <PieChart>
                                     <ChartTooltip
@@ -216,9 +223,11 @@ const DoctorDashboard = () => {
                                 </PieChart>
                             </ChartContainer>
                         ) : (
-                            <div className="flex h-[240px] items-center justify-center text-sm text-muted-foreground">
-                                No appointments yet
-                            </div>
+                            <EmptyState
+                                icon={CalendarX}
+                                title="No appointments yet"
+                                className="h-[240px] rounded-lg border-0 py-0"
+                            />
                         )}
                     </CardContent>
                 </Card>
@@ -226,7 +235,9 @@ const DoctorDashboard = () => {
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-lg">Recent Appointments</CardTitle>
+                    <CardTitle className="font-display text-base font-medium">
+                        Recent Appointments
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
                     {appointments?.length ? (
@@ -238,12 +249,11 @@ const DoctorDashboard = () => {
                             onComplete={handleCompleteAppointment}
                         />
                     ) : (
-                        <div className="flex flex-col items-center justify-center gap-3 py-12 text-center">
-                            <CalendarX className="size-10 text-muted-foreground" />
-                            <p className="text-sm font-medium text-muted-foreground">
-                                No appointments yet
-                            </p>
-                        </div>
+                        <EmptyState
+                            icon={CalendarX}
+                            title="No appointments yet"
+                            className="rounded-lg border-0 py-8"
+                        />
                     )}
                 </CardContent>
             </Card>

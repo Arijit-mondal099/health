@@ -20,8 +20,9 @@ import {
     Skeleton,
 } from "@health/ui";
 import { Area, AreaChart, CartesianGrid, Cell, Pie, PieChart, XAxis, YAxis } from "recharts";
-import { CalendarDays, Stethoscope, Users } from "lucide-react";
+import { CalendarDays, CalendarX, Stethoscope, Users } from "lucide-react";
 import { AppointmentsTable } from "../../components/AppointmentsTable.jsx";
+import EmptyState from "../../components/EmptyState.jsx";
 import { getMonthlyTrend, getStatusBreakdown } from "../../utils/appointmentCharts.js";
 
 const STATS = [
@@ -62,7 +63,7 @@ const Dashboard = () => {
     if (loading) {
         return (
             <div className="flex flex-col gap-6 py-6 md:py-8">
-                <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+                <h1 className="font-display text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
                     Admin Dashboard
                 </h1>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -98,7 +99,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex flex-col gap-6 py-6 md:py-8">
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+            <h1 className="font-display text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
                 Admin Dashboard
             </h1>
 
@@ -110,10 +111,10 @@ const Dashboard = () => {
                                 <Icon className="size-6" />
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-2xl font-bold tracking-tight text-foreground">
+                                <span className="font-display text-3xl font-medium tracking-tight text-foreground">
                                     {dashboard?.[key] ?? 0}
                                 </span>
-                                <span className="text-sm font-medium text-muted-foreground">
+                                <span className="file-label mt-1 text-muted-foreground">
                                     {label}
                                 </span>
                             </div>
@@ -125,7 +126,9 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-lg">Appointments trend</CardTitle>
+                        <CardTitle className="font-display text-base font-medium">
+                            Appointments trend
+                        </CardTitle>
                         <CardDescription>Monthly appointment volume</CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -158,23 +161,27 @@ const Dashboard = () => {
                                 </AreaChart>
                             </ChartContainer>
                         ) : (
-                            <div className="flex h-[240px] items-center justify-center text-sm text-muted-foreground">
-                                No appointments yet
-                            </div>
+                            <EmptyState
+                                icon={CalendarX}
+                                title="No appointments yet"
+                                className="h-[240px] rounded-lg border-0 py-0"
+                            />
                         )}
                     </CardContent>
                 </Card>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-lg">Appointment status</CardTitle>
+                        <CardTitle className="font-display text-base font-medium">
+                            Appointment status
+                        </CardTitle>
                         <CardDescription>Completed, canceled and pending</CardDescription>
                     </CardHeader>
                     <CardContent>
                         {hasAppointments ? (
                             <ChartContainer
                                 config={statusConfig}
-                                className="mx-auto aspect-square h-[240px]"
+                                className="mx-auto aspect-square h-[240px] w-full"
                             >
                                 <PieChart>
                                     <ChartTooltip
@@ -201,9 +208,11 @@ const Dashboard = () => {
                                 </PieChart>
                             </ChartContainer>
                         ) : (
-                            <div className="flex h-[240px] items-center justify-center text-sm text-muted-foreground">
-                                No appointments yet
-                            </div>
+                            <EmptyState
+                                icon={CalendarX}
+                                title="No appointments yet"
+                                className="h-[240px] rounded-lg border-0 py-0"
+                            />
                         )}
                     </CardContent>
                 </Card>
@@ -211,7 +220,9 @@ const Dashboard = () => {
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-lg">Latest Appointments</CardTitle>
+                    <CardTitle className="font-display text-base font-medium">
+                        Latest Appointments
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
                     {appointments?.length ? (
@@ -221,9 +232,11 @@ const Dashboard = () => {
                             onCancel={handleCancel}
                         />
                     ) : (
-                        <p className="py-8 text-center text-sm text-muted-foreground">
-                            No appointments yet.
-                        </p>
+                        <EmptyState
+                            icon={CalendarX}
+                            title="No appointments yet"
+                            className="rounded-lg border-0 py-8"
+                        />
                     )}
                 </CardContent>
             </Card>

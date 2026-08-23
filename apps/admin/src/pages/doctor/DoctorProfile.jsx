@@ -33,7 +33,9 @@ const SPECIALITIES = [
 
 const Field = ({ label, htmlFor, children }) => (
     <div className="flex flex-col gap-1.5">
-        <Label htmlFor={htmlFor}>{label}</Label>
+        <Label htmlFor={htmlFor} className="file-label text-muted-foreground">
+            {label}
+        </Label>
         {children}
     </div>
 );
@@ -69,8 +71,7 @@ const DoctorProfile = () => {
 
             await dispatch(editDoctorProfile(formData)).unwrap();
             toast.success("Profile updated");
-        } catch (error) {
-            console.log(error);
+        } catch {
             toast.error("Failed to update profile");
         }
     };
@@ -119,8 +120,10 @@ const DoctorProfile = () => {
                         )}
                     </label>
                     <div>
-                        <CardTitle className="text-xl tracking-tight">{doctor.name}</CardTitle>
-                        <p className="text-sm text-muted-foreground">{doctor.speciality}</p>
+                        <CardTitle className="font-display text-xl font-medium capitalize tracking-tight">
+                            {doctor.name}
+                        </CardTitle>
+                        <p className="file-label mt-1 text-muted-foreground">{doctor.speciality}</p>
                     </div>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4">

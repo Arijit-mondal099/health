@@ -58,7 +58,6 @@ export const doctorAppointments = createAsyncThunk(
 
             return data.response;
         } catch (error) {
-            console.log(error);
             return thunkAPI.rejectWithValue(error.message);
         }
     },
@@ -82,7 +81,6 @@ export const completeAppointment = createAsyncThunk(
 
             return appointmentId;
         } catch (error) {
-            console.log(error);
             return thunkAPI.rejectWithValue(error.message);
         }
     },
@@ -106,7 +104,6 @@ export const cancelAppointment = createAsyncThunk(
 
             return appointmentId;
         } catch (error) {
-            console.log(error);
             return thunkAPI.rejectWithValue(error.message);
         }
     },
@@ -129,7 +126,6 @@ export const getDoctorDashboard = createAsyncThunk(
 
             return data.response;
         } catch (error) {
-            console.log(error);
             return thunkAPI.rejectWithValue(error.message);
         }
     },
@@ -150,7 +146,6 @@ export const getDoctorProfile = createAsyncThunk("doctor/getDoctorProfile", asyn
 
         return data.response;
     } catch (error) {
-        console.log(error);
         return thunkAPI.rejectWithValue(error.message);
     }
 });
@@ -173,7 +168,6 @@ export const editDoctorProfile = createAsyncThunk(
 
             return data.response;
         } catch (error) {
-            console.log(error);
             return thunkAPI.rejectWithValue(error.message);
         }
     },

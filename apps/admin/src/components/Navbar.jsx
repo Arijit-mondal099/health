@@ -1,4 +1,3 @@
-import { logo } from "../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -7,6 +6,7 @@ import { doctorLogout } from "../features/doctor/doctorSlice.js";
 import { Button } from "@health/ui";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "../theme/ThemeProvider.jsx";
+import Wordmark from "./Wordmark.jsx";
 
 const Navbar = () => {
     const { adminToken } = useSelector((store) => store.admin);
@@ -26,11 +26,10 @@ const Navbar = () => {
         <header className="sticky top-0 z-40 flex h-14 items-center justify-between border-b border-border bg-background/80 px-3 backdrop-blur-xl sm:px-6 md:px-8">
             <Link
                 to={adminToken ? "/admin-dashboard" : "/doctor-dashboard"}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2.5"
             >
-                <img src={logo} alt="Health logo" className="size-8" />
-                <span className="text-lg font-semibold tracking-tight text-foreground">Health</span>
-                <span className="rounded-full border border-border px-2 py-0.5 text-xs font-medium text-muted-foreground">
+                <Wordmark />
+                <span className="file-label rounded-full border border-border px-2.5 py-1 text-muted-foreground">
                     {adminToken ? "Admin" : "Doctor"}
                 </span>
             </Link>
@@ -41,7 +40,7 @@ const Navbar = () => {
                     size="icon"
                     onClick={toggleTheme}
                     aria-label="Toggle theme"
-                    className="size-9 rounded-full"
+                    className="size-9"
                 >
                     {theme === "dark" ? (
                         <Sun className="size-[18px]" />

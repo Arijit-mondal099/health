@@ -12,6 +12,7 @@ import {
     Switch,
 } from "@health/ui";
 import { Users } from "lucide-react";
+import EmptyState from "../../components/EmptyState.jsx";
 
 const DoctorsList = () => {
     const { doctors, loading } = useSelector((store) => store.admin);
@@ -24,7 +25,7 @@ const DoctorsList = () => {
     if (loading) {
         return (
             <div className="flex flex-col gap-6 py-6 md:py-8">
-                <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+                <h1 className="font-display text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
                     All Doctors
                 </h1>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -52,7 +53,9 @@ const DoctorsList = () => {
 
     return (
         <div className="flex flex-col gap-6 py-6 md:py-8">
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">All Doctors</h1>
+            <h1 className="font-display text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
+                All Doctors
+            </h1>
 
             {doctors?.length ? (
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -65,16 +68,18 @@ const DoctorsList = () => {
                                         <AvatarFallback>{doctor.name?.[0]}</AvatarFallback>
                                     </Avatar>
                                     <div className="min-w-0">
-                                        <h2 className="truncate font-semibold text-foreground">
+                                        <h2 className="truncate font-semibold capitalize text-foreground">
                                             {doctor.name}
                                         </h2>
-                                        <p className="truncate text-xs text-muted-foreground">
+                                        <p className="file-label truncate text-muted-foreground">
                                             {doctor.speciality}
                                         </p>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between border-t border-border pt-3">
-                                    <span className="text-sm text-muted-foreground">Available</span>
+                                    <span className="file-label text-muted-foreground">
+                                        Available
+                                    </span>
                                     <Switch
                                         checked={doctor.available}
                                         onCheckedChange={async () => {
@@ -98,12 +103,7 @@ const DoctorsList = () => {
                     ))}
                 </div>
             ) : (
-                <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-border py-20 text-center">
-                    <Users className="size-10 text-muted-foreground" />
-                    <p className="text-lg font-medium text-muted-foreground">
-                        Doctors haven't been created yet
-                    </p>
-                </div>
+                <EmptyState icon={Users} title="Doctors haven't been created yet" />
             )}
         </div>
     );
